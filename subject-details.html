@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subject Details</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #121212;
+            color: #F0F0F0;
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+
+        a {
+            color: #00ADB5;
+            text-decoration: none;
+        }
+
+        .subject-details-header {
+            background-color: #292F36;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+
+        .tab-container {
+            margin-bottom: 20px;
+        }
+
+        .tab-buttons {
+            display: flex;
+            justify-content: flex-start; /* Align items to the start */
+            overflow-x: auto; /* Enable horizontal scrolling if needed */
+            background-color: #292F36;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .tab-button {
+            background: none;
+            border: none;
+            color: #F0F0F0;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+            border-radius: 5px;
+            margin-right: 5px; /* Add some space between the buttons */
+            white-space: nowrap; /* Prevent the buttons from wrapping */
+        }
+
+        .tab-button:hover {
+            background-color: #333; /* Slightly darker background on hover */
+        }
+
+        .tab-button.active {
+            background-color: #FF4136; /* Highlight color for the active tab */
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+            padding: 20px;
+            background-color: #111; /* Dark background for the content */
+            border-radius: 5px;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+            max-width: 100%;
+            margin: 0 auto;
+        }
+
+        .tab-content.active {
+            display: block;
+            opacity: 1;
+        }
+
+          .tab-content a {
+        display: inline-block;
+        padding: 10px 15px;
+        margin: 5px;
+        background-color: #fff; /* White background for the tiles */
+        color: #333; /* Dark text color */
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+    }
+
+    .tab-content a:hover {
+        background-color: #eee; /* Light gray on hover */
+    }
+
+    .tab-content .pdf-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Adjust minmax value as needed */
+    gap: 10px;
+}
+
+.tab-content a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 50px;
+    padding: 10px;
+    margin: 5px;
+    background-color: #fff;
+    color: #333;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    text-align: center; /* Ensure text is centered within the tile */
+}
+
+.tab-content a:hover {
+    background-color: #eee;
+}
+
+.tab-content .no-pdfs {
+    text-align: center;
+    font-style: italic;
+    color: #999;
+}
+
+    /* Sub Tab Styling */
+    .sub-tab-buttons {
+        display: flex;
+        justify-content: flex-start;
+        overflow-x: auto;
+        background-color: #333; /* Darker background for sub-tabs */
+        padding: 5px;
+        border-radius: 5px;
+        margin-bottom: 10px;
+    }
+
+    .sub-tab-button {
+        background: none;
+        border: none;
+        color: #F0F0F0;
+        padding: 8px 16px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        border-radius: 5px;
+        margin-right: 5px;
+        white-space: nowrap;
+    }
+
+    .sub-tab-button:hover {
+        background-color: #555; /* Even darker on hover */
+    }
+
+    .sub-tab-button.active {
+        background-color: #EF5350;
+        color: #fff;
+    }
+
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <h1>Apna Engineering Wallah</h1>
+            <nav>
+                <a href="#about">About</a>
+                <a href="#services">Services</a>
+                <a href="#courses">Free Study Material</a>
+                <a href="#why-choose-us">Why Us</a>
+                <a href="#testimonials">Testimonials</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="subject-details-header">
+            <h1 id="subject-name"></h1>
+        </div>
+
+        <div class="tab-container">
+            <div class="tab-buttons">
+                <button class="tab-button active" data-tab="theory">Theory</button>
+                <button class="tab-button" data-tab="lab">Lab</button>
+                <button class="tab-button" data-tab="notes">Notes</button>
+                <button class="tab-button" data-tab="pyqs">PYQs</button>
+                <button class="tab-button" data-tab="books">Books</button>
+                <button class="tab-button" data-tab="practicals">Practicals</button>
+            </div>
+
+            <div id="theory" class="tab-content active">
+                <!-- Theory content will be displayed here -->
+            </div>
+
+            <div id="lab" class="tab-content">
+                <!-- Lab content will be displayed here -->
+            </div>
+
+            <div id="notes" class="tab-content">
+                <!-- Notes content will be displayed here -->
+            </div>
+
+            <div id="pyqs" class="tab-content">
+                <!-- PYQs content will be displayed here -->
+                <div id="midsem-pyqs">
+                    <h3>Midsem</h3>
+                </div>
+                <div id="endsem-pyqs">
+                    <h3>Endsem</h3>
+                </div>
+            </div>
+
+            <div id="books" class="tab-content">
+                <!-- Books content will be displayed here -->
+            </div>
+
+            <div id="practicals" class="tab-content">
+                <!-- Practicals content will be displayed here -->
+            </div>
+        </div>
+
+    </main>
+
+    <footer>
+        <!-- Same footer as the main page -->
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const subjectNameHeader = document.getElementById('subject-name');
+            const tabButtons = document.querySelectorAll('.tab-button');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            // Function to extract query parameters from URL
+            function getQueryParam(name) {
+                const urlParams = new URLSearchParams(window.location.search);
+                return urlParams.get(name);
+            }
+
+            // Get the subject name and other parameters from the URL
+            const university = getQueryParam('university');
+            const branch = getQueryParam('branch');
+            const semester = getQueryParam('semester');
+            const subjectName = getQueryParam('subject');
+
+            // Set the subject name in the header
+            subjectNameHeader.textContent = subjectName;
+
+            // Function to hide all tab contents
+            function hideAllTabContents() {
+                tabContents.forEach(tabContent => {
+                    tabContent.classList.remove('active');
+                });
+            }
+
+            // Function to deactivate all tab buttons
+            function deactivateAllTabButtons() {
+                tabButtons.forEach(tabButton => {
+                    tabButton.classList.remove('active');
+                });
+            }
+
+            // Function to show a specific tab content
+            function showTabContent(tabId) {
+                const tabContent = document.getElementById(tabId);
+                if (tabContent) {
+                    tabContent.classList.add('active');
+                }
+            }
+
+            // Function to handle tab button click
+            function handleTabButtonClick(event) {
+                const tabId = event.target.dataset.tab;
+                hideAllTabContents();
+                deactivateAllTabButtons();
+                showTabContent(tabId);
+                event.target.classList.add('active');
+            }
+
+            // Add click event listeners to tab buttons
+            tabButtons.forEach(tabButton => {
+                tabButton.addEventListener('click', handleTabButtonClick);
+            });
+
+        // Helper function to generate PDF links HTML
+        function generatePDFLinksHTML(pdfLinks) {
+            if (!pdfLinks || pdfLinks.length === 0) {
+                return "<p class='no-pdfs'>No PDFs available.</p>";
+            }
+
+            let html = "<div class='pdf-grid'>"; // Start PDF grid
+
+            //Add a maximum to avoid load
+                let count = 0;
+
+            pdfLinks.forEach(link => {
+
+               if (count >=4){
+               return;
+               }
+                html += `<a href="${link.url}">${link.name}</a>`;
+                count ++;
+            });
+
+            html += "</div>"; // End PDF grid
+            return html;
+        }
+
+        // Helper function to generate PYQ HTML (with Midsem/Endsem sections)
+        function generatePYQsHTML(pyqsData) {
+            let html = "";
+            if (!pyqsData) {
+                return "<p>No PYQs available.</p>";
+            }
+
+            html += "<div>";
+            html += "<h3>Midsem</h3>";
+            if (pyqsData.midsem && pyqsData.midsem.length > 0) {
+                html += generatePDFLinksHTML(pyqsData.midsem);
+            } else {
+                html += "<p>No Midsem papers available.</p>";
+            }
+            html += "</div>";
+
+            html += "<div>";
+            html += "<h3>Endsem</h3>";
+            if (pyqsData.endsem && pyqsData.endsem.length > 0) {
+                html += generatePDFLinksHTML(pyqsData.endsem);
+            } else {
+                html += "<p>No Endsem papers available.</p>";
+            }
+            html += "</div>";
+
+            return html;
+        }
+
+
+            // Fetch Subject Data
+            function getSubjectData(university, branch, semester, subjectName) {
+                const data = {
+                    'ipu': {
+                        'cse': {
+                            '1': [
+                                {
+                                    name: 'Applied Maths - 1',
+                                    theory: [
+                                        { name: 'Theory 1', url: 'pdfs/theory1.pdf' },
+                                        { name: 'Theory 2', url: 'pdfs/theory2.pdf' }
+                                    ],
+                                    lab: [
+                                        { name: 'Lab 1', url: 'pdfs/lab1.pdf' },
+                                        { name: 'Lab 2', url: 'pdfs/lab2.pdf' }
+                                    ],
+                                    notes: [
+                                        { name: 'Notes 1', url: 'pdfs/notes1.pdf' },
+                                        { name: 'Notes 2', url: 'pdfs/notes2.pdf' }
+                                    ],
+                                    pyqs: {
+                                        midsem: [
+                                            { name: 'Midsem 2022', url: 'pdfs/midsem2022.pdf' },
+                                            { name: 'Midsem 2023', url: 'pdfs/midsem2023.pdf' }
+                                        ],
+                                        endsem: [
+                                            { name: 'Endsem 2022', url: 'pdfs/endsem2022.pdf' },
+                                            { name: 'Endsem 2023', url: 'pdfs/endsem2023.pdf' }
+                                        ]
+                                    },
+                                    books: [
+                                        { name: 'Book 1', url: 'pdfs/book1.pdf' },
+                                        { name: 'Book 2', url: 'pdfs/book2.pdf' }
+                                    ],
+                                    practicals: [
+                                        { name: 'Practical 1', url: 'pdfs/practical1.pdf' },
+                                        { name: 'Practical 2', url: 'pdfs/practical2.pdf' }
+                                    ],
+                                    units: ["Unit 1", "Unit 2", "Unit 3", "Unit 4"]
+                                },
+                                {
+                                    name: 'Applied Physics - 1',
+                                    theory: [
+                                        { name: 'Theory 1', url: 'pdfs/theory1.pdf' },
+                                        { name: 'Theory 2', url: 'pdfs/theory2.pdf' }
+                                    ],
+                                    lab: [
+                                        { name: 'Lab 1', url: 'pdfs/lab1.pdf' },
+                                        { name: 'Lab 2', url: 'pdfs/lab2.pdf' }
+                                    ],
+                                    notes: [
+                                        { name: 'Notes 1', url: 'pdfs/notes1.pdf' },
+                                        { name: 'Notes 2', url: 'pdfs/notes2.pdf' }
+                                    ],
+                                    pyqs: {
+                                        midsem: [
+                                            { name: 'Midsem 2022', url: 'pdfs/midsem2022.pdf' },
+                                            { name: 'Midsem 2023', url: 'pdfs/midsem2023.pdf' }
+                                        ],
+                                        endsem: [
+                                            { name: 'Endsem 2022', url: 'pdfs/endsem2022.pdf' },
+                                            { name: 'Endsem 2023', url: 'pdfs/endsem2023.pdf' }
+                                        ]
+                                    },
+                                    books: [
+                                        { name: 'Book 1', url: 'pdfs/book1.pdf' },
+                                        { name: 'Book 2', url: 'pdfs/book2.pdf' }
+                                    ],
+                                    practicals: [
+                                        { name: 'Practical 1', url: 'pdfs/practical1.pdf' },
+                                        { name: 'Practical 2', url: 'pdfs/practical2.pdf' }
+                                    ],
+                                    units: ["Unit 1", "Unit 2", "Unit 3"]
+                                },
+                            ],
+                            '2': [
+                                {
+                                    name: 'Applied Maths - II',
+                                    theory: [
+                                        { name: 'Theory 1', url: 'pdfs/theory1.pdf' },
+                                        { name: 'Theory 2', url: 'pdfs/theory2.pdf' }
+                                    ],
+                                    lab: [
+                                        { name: 'Lab 1', url: 'pdfs/lab1.pdf' },
+                                        { name: 'Lab 2', url: 'pdfs/lab2.pdf' }
+                                    ],
+                                    notes: [
+                                        { name: 'Notes 1', url: 'pdfs/notes1.pdf' },
+                                        { name: 'Notes 2', url: 'pdfs/notes2.pdf' }
+                                    ],
+                                    pyqs: {
+                                        midsem: [
+                                            { name: 'Midsem 2022', url: 'pdfs/midsem2022.pdf' },
+                                            { name: 'Midsem 2023', url: 'pdfs/midsem2023.pdf' }
+                                        ],
+                                        endsem: [
+                                            { name: 'Endsem 2022', url: 'pdfs/endsem2022.pdf' },
+                                            { name: 'Endsem 2023', url: 'pdfs/endsem2023.pdf' }
+                                        ]
+                                    },
+                                    books: [
+                                        { name: 'Book 1', url: 'pdfs/book1.pdf' },
+                                        { name: 'Book 2', url: 'pdfs/book2.pdf' }
+                                    ],
+                                    practicals: [
+                                        { name: 'Practical 1', url: 'pdfs/practical1.pdf' },
+                                        { name: 'Practical 2', url: 'pdfs/practical2.pdf' }
+                                    ],
+                                    units: ["Unit 1", "Unit 2", "Unit 3", "Unit 4"]
+                                },
+                                {
+                                    name: 'Applied Physics - II',
+                                    theory: [
+                                        { name: 'Theory 1', url: 'pdfs/theory1.pdf' },
+                                        { name: 'Theory 2', url: 'pdfs/theory2.pdf' }
+                                    ],
+                                    lab: [
+                                        { name: 'Lab 1', url: 'pdfs/lab1.pdf' },
+                                        { name: 'Lab 2', url: 'pdfs/lab2.pdf' }
+                                    ],
+                                    notes: [
+                                        { name: 'Notes 1', url: 'pdfs/notes1.pdf' },
+                                        { name: 'Notes 2', url: 'pdfs/notes2.pdf' }
+                                    ],
+                                    pyqs: {
+                                        midsem: [
+                                            { name: 'Midsem 2022', url: 'pdfs/midsem2022.pdf' },
+                                            { name: 'Midsem 2023', url: 'pdfs/midsem2023.pdf' }
+                                        ],
+                                        endsem: [
+                                            { name: 'Endsem 2022', url: 'pdfs/endsem2022.pdf' },
+                                            { name: 'Endsem 2023', url: 'pdfs/endsem2023.pdf' }
+                                        ]
+                                    },
+                                    books: [
+                                        { name: 'Book 1', url: 'pdfs/book1.pdf' },
+                                        { name: 'Book 2', url: 'pdfs/book2.pdf' }
+                                    ],
+                                    practicals: [
+                                        { name: 'Practical 1', url: 'pdfs/practical1.pdf' },
+                                        { name: 'Practical 2', url: 'pdfs/practical2.pdf' }
+                                    ],
+                                    units: ["Unit 1", "Unit 2", "Unit 3"]
+                                },
+                            ],
+                        },
+                        
+                    },
+                };
+
+                if (data[university] && data[university][branch] && data[university][branch][semester]) {
+                    const subjects = data[university][branch][semester];
+                    return subjects.find(subject => subject.name === subjectName);
+                }
+                return null;
+            }
+
+            const subjectData = getSubjectData(university, branch, semester, subjectName);
+
+            // Set content for each tab
+            if (subjectData) {
+                document.getElementById('theory').innerHTML = generatePDFLinksHTML(subjectData.theory);
+                document.getElementById('lab').innerHTML = generatePDFLinksHTML(subjectData.lab);
+                document.getElementById('notes').innerHTML = generatePDFLinksHTML(subjectData.notes);
+                document.getElementById('books').innerHTML = generatePDFLinksHTML(subjectData.books);
+                document.getElementById('practicals').innerHTML = generatePDFLinksHTML(subjectData.practicals);
+
+                const pyqsHTML = generatePYQsHTML(subjectData.pyqs);
+                document.getElementById('pyqs').innerHTML = pyqsHTML;
+            }
+        });
+
+    </script>
+</body>
+
+</html>
